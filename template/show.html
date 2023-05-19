@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Tasks</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+        
+    }
+    .body{
+        background-color:#f9f9f9 ;
+
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        background: white;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+
+    ul li:nth-child(odd) {
+        background: white;
+    }
+
+    ul li:hover {
+        background: #f2f2f2;
+    }
+
+    .header {
+        background-color: #04AA6D;
+        padding: 30px 40px;
+        color: white;
+        text-align: center;
+    }
+
+    .header:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .addBtn {
+        padding: 10px;
+        background: #00000000;
+        color: #000000;
+        float: right;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <center>
+    <div id="myDIV" class="header">
+        <h1>My To Do List</h1>
+        <button type="button" class="addBtn"><a style="color: white;" href="{% url 'create' %}">ADD NEW TASK</a></button>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <h1 style="color: red;text-align:center">{{ message }}</h1>
+    {% endfor %}
+    {% endif %}
+</center>
+
+    <ul id="myUL">
+        {% for i in response %}
+        <li><a style="color: black;" href="{% url 'showone' %}?id={{i.id}}"> {{i.title}} - <span style="color: rgb(255, 0, 0);">{{i.status}}</span></a></li>
+        {% endfor %}
+
+    </ul>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Tasks</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+    }
+
+    .header {
+        background-color: #04AA6D;
+        padding: 30px 40px;
+        color: white;
+        text-align: center;
+    }
+
+    .addBtn {
+        padding: 10px;
+        width: 25%;
+        background: #00000000;
+        color: #000000;
+        float: right;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 0;
+        box-shadow: #000000;
+    }
+
+    form {
+        border: 3px solid #f1f1f100;
+    }
+
+    input[type=text] {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: auto;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    a.button {
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+    }
+</style>
+
+<body>
+    <div id="myDIV" class="header">
+        <a style="cursor: pointer;color:white;float:right" href="{% url 'showtasks' %}">
+            <h2>HOME</h2>
+        </a>
+        <h1 style="padding-left: 5%;">Selected Task Details</h1>
+
+
+    </div>
+
+
+
+    <center>
+
+        <div class="container">
+            {% if api %}
+            
+            
+            <h2><span style="color: rgb(255, 0, 0);">Your Task:</span>  {{api.title}}</h2>
+                
+            <h2><span style="color: rgb(255, 0, 0);">Status:</span>  {{api.status}}</h2>
+                
+            <button type="submit" class="button"><a style="color: white;" href="{% url 'update' %}?id={{api.id}}">
+                    <h4>UPDATE TASK</h4>
+                </a></button>
+            <button type="submit" class="button"><a style="color: white;" href="{% url 'delete' %}?id={{api.id}}">
+                    <h4>DELETE THIS TASK</h4>
+                </a></button>
+            <button type="submit" class="button"><a style="color: white;" href="{% url 'create' %}">
+                    <h4>ADD NEW TASK</h4>
+                </a></button>
+            {% endif %}
+        </div>
+
+    </center>
+
+</body>
+
+</html>
